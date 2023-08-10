@@ -7,7 +7,9 @@ on:
 
 jobs:
   check:
-    runs-on: ARM64
+    runs-on: ubuntu-latest
+    container:
+      image: arm64v8/debian
     outputs:
       is_update: ${{ steps.check_ver.outputs.is_update }}
       stable_ver: ${{ steps.check_ver.outputs.stable_ver }}
@@ -20,7 +22,9 @@ jobs:
           repo: Wind4/vlmcsd
 
   build:
-    runs-on: ARM64
+    runs-on: ubuntu-latest
+    container:
+      image: arm64v8/debian
     needs: check
     if: needs.check.outputs.is_update == 'true'
     permissions:
