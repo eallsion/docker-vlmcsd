@@ -9,7 +9,9 @@ on:
 
 jobs:
   build:
-    runs-on: ARM64
+    runs-on: ubuntu-latest
+    container:
+      image: arm64v8/debian
     steps:
       - uses: actions/checkout@v3.1.0
       - run: make build
